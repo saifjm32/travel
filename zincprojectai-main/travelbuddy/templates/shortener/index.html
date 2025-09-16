@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Home - URL Shortener{% endblock %}
+
+{% block content %}
+<div class="text-center">
+  <h1 class="text-4xl font-bold text-gray-900 mb-6">🚀 Shorten Your URLs in Seconds</h1>
+  <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+    Transform long, messy URLs into short, shareable links.
+  </p>
+
+  <div class="max-w-3xl mx-auto">
+    <div class="bg-white rounded-lg shadow p-8">
+      <form class="space-y-6">
+        <div>
+          <label for="url" class="block text-sm font-medium text-gray-700 mb-2">Enter your long URL</label>
+          <input id="url" name="url" type="url"
+                 class="block w-full px-3 py-4 border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-lg"
+                 placeholder="https://example.com/very-long-url-that-needs-shortening" required>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label for="custom_code" class="block text-sm font-medium text-gray-700 mb-2">Custom code (optional)</label>
+            <input id="custom_code" name="custom_code" type="text"
+                   class="block w-full px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                   placeholder="my-awesome-link">
+          </div>
+          <div>
+            <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description (optional)</label>
+            <input id="description" name="description" type="text"
+                   class="block w-full px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                   placeholder="What is this link for?">
+          </div>
+        </div>
+
+        <button type="submit"
+                class="w-full py-4 px-4 rounded-lg shadow text-lg font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition">
+          ✨ Shorten URL
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="text-center p-6">
+      <div class="text-4xl mb-4">⚡</div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Lightning Fast</h3>
+      <p class="text-gray-600">Shorten URLs in milliseconds.</p>
+    </div>
+    <div class="text-center p-6">
+      <div class="text-4xl mb-4">📊</div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Detailed Analytics</h3>
+      <p class="text-gray-600">Track clicks, locations, and referrers.</p>
+    </div>
+    <div class="text-center p-6">
+      <div class="text-4xl mb-4">🔒</div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Secure & Reliable</h3>
+      <p class="text-gray-600">Links that just keep working.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+
+
+

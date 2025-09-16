@@ -1,0 +1,21 @@
+{% extends 'planner/base.html' %}
+{% block title %}Choose plan · travelBuddy{% endblock %}
+{% block content %}
+  <div class="plans-section">
+    <h2 class="section-title" style="text-align:center">Choose your plan</h2>
+    <div class="grid grid-2">
+    <div class="card card--plan">
+      <div class="badge">Free</div>
+      <p>Lightweight planner for quick trips</p>
+      <a href="{% url 'planner:free_plan' %}" class="btn btn-primary" style="margin-top:10px">Choose Free</a>
+    </div>
+    <div class="card card--plan">
+      <div class="badge">Pro</div>
+      <p>Unlock full control of your trip details</p>
+      <a href="{% url 'planner:paid_plan' %}" class="btn btn-primary" style="margin-top:10px">Subscribe</a>
+    </div>
+    </div>
+  </div>
+{% endblock %}
+
+

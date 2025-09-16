@@ -1,0 +1,36 @@
+{% extends 'planner/base.html' %}
+{% block title %}Itinerary · travelBuddy{% endblock %}
+{% block content %}
+  <div class="card">
+    <div class="section-title">{{ itinerary.destination }}</div>
+    {% for day in itinerary.days %}
+      <div class="itin-day">
+        <div class="section-title">day {{ day.day }}</div>
+        <div class="grid">
+          {% for item in day.items %}
+            <div class="card itin-item">
+              <div class="time">{{ item.time }}</div>
+              <div>
+                <div class="place">{{ item.place }}</div>
+                <div class="note">{{ item.note }}</div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+    <div style="margin-top:12px;display:flex;gap:8px">
+      {% if trip.plan_type == 'FREE' %}
+        <a class="btn btn-secondary" href="/plan/free/?origin={{ trip.origin }}&destination={{ trip.destination }}&start_date={{ trip.start_date }}&end_date={{ trip.end_date }}">Edit</a>
+      {% else %}
+        <a class="btn btn-secondary" href="/plan/paid/">Edit</a>
+      {% endif %}
+      <form method="post" style="display:inline">
+        {% csrf_token %}
+        <button class="btn btn-primary" type="submit">Regenerate</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+

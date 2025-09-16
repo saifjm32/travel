@@ -1,0 +1,34 @@
+{% extends 'planner/base.html' %}
+{% block title %}Free plan · travelBuddy{% endblock %}
+{% block content %}
+  <div class="form-section">
+    <h2 class="section-title">Free plan</h2>
+    <form method="post" class="grid">
+    {% csrf_token %}
+    <div>
+      <label class="label">Origin</label>
+      {{ form.origin }}
+    </div>
+    <div>
+      <label class="label">Destination</label>
+      {{ form.destination }}
+    </div>
+    <div class="grid grid-2">
+      <div>
+        <label class="label">Start date</label>
+        {{ form.start_date }}
+      </div>
+      <div>
+        <label class="label">End date</label>
+        {{ form.end_date }}
+      </div>
+    </div>
+    {% if form.non_field_errors %}
+      <div class="card" style="border-color:#dc2626;color:#b91c1c">{{ form.non_field_errors }}</div>
+    {% endif %}
+    <button class="btn btn-primary" type="submit">Generate My Plan</button>
+    </form>
+  </div>
+{% endblock %}
+
+

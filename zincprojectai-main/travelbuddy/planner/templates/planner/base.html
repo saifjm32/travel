@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}travelBuddy{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'planner/style.css' %}">
+</head>
+<body>
+  <header class="header">
+    {% block brand_logo %}
+      <a href="{% url 'planner:home' %}" class="brand" aria-label="TravelBuddy home">
+        <img src="{% static 'planner/logo-travelbuddy.png' %}" alt="TravelBuddy" class="logo-img"/>
+      </a>
+    {% endblock %}
+  </header>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+  <div class="footer">&copy; 2025 travelBuddy</div>
+</body>
+</html>
+
+

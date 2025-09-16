@@ -1,0 +1,142 @@
+{% extends 'planner/base.html' %}
+{% block title %}Pro plan · travelBuddy{% endblock %}
+{% block content %}
+  <div class="form-section">
+  <h2 class="section-title">Pro plan</h2>
+  <form method="post" class="grid">
+    {% csrf_token %}
+    <div class="card">
+      <div class="grid grid-2">
+        <div>
+          <label class="label">Origin</label>
+          {{ form.origin }}
+        </div>
+        <div>
+          <label class="label">Destination</label>
+          {{ form.destination }}
+        </div>
+      </div>
+      <div class="grid grid-2" style="margin-top:10px">
+        <div>
+          <label class="label">Start date</label>
+          {{ form.start_date }}
+        </div>
+        <div>
+          <label class="label">End date</label>
+          {{ form.end_date }}
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Budget</div>
+      <div class="grid grid-2">
+        <div>
+          <label class="label">Amount</label>
+          {{ form.budget_amount }}
+        </div>
+        <div>
+          <label class="label">Currency</label>
+          {{ form.budget_currency }}
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Transport preferences</div>
+      <div>
+        {{ form.transport_prefs }}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Airport transfer</div>
+      <label style="margin-top:8px;display:block">
+        {{ form.taxi_airport_to_hotel }} Taxi from airport to hotel
+      </label>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Travelers</div>
+      {% if formset.non_form_errors %}
+        <div class="card" style="border-color:#dc2626;color:#b91c1c;margin-bottom:10px">{{ formset.non_form_errors }}</div>
+      {% endif %}
+      <div id="trav-container" class="grid">
+        {{ formset.management_form }}
+        {% for f in formset %}
+          <div class="grid grid-2 trav-row">
+            <div>
+              <label class="label">Age</label>
+              {{ f.age }}
+            </div>
+            <div>
+              <label class="label">Gender</label>
+              {{ f.gender }}
+            </div>
+            <div>
+              <label class="label">Interests</label>
+              {{ f.interests }}
+            </div>
+            <div>
+              <label class="label">Disabilities / allergies (optional)</label>
+              {{ f.disabilities_allergies }}
+            </div>
+          </div>
+        {% empty %}
+        {% endfor %}
+      </div>
+      <button class="btn btn-secondary" type="button" id="add-trav">Add traveler</button>
+
+      <div id="trav-template" class="hidden">
+        <div class="grid grid-2 trav-row">
+          <div>
+            <label class="label">Age</label>
+            <input type="number" name="trav-__index__-age" class="input" min="0"/>
+          </div>
+          <div>
+            <label class="label">Gender</label>
+            <select name="trav-__index__-gender">
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="label">Interests</label>
+            <textarea name="trav-__index__-interests"></textarea>
+          </div>
+          <div>
+            <label class="label">Disabilities / allergies (optional)</label>
+            <textarea name="trav-__index__-disabilities_allergies"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if form.non_field_errors %}
+      <div class="card" style="border-color:#dc2626;color:#b91c1c">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <button class="btn btn-primary" type="submit">Generate My Plan</button>
+  </form>
+
+  <script>
+    (function(){
+      const addBtn = document.getElementById('add-trav');
+      const container = document.getElementById('trav-container');
+      const tmpl = document.getElementById('trav-template');
+      const totalInput = container.querySelector('input[name="trav-TOTAL_FORMS"]');
+      addBtn.addEventListener('click', function(){
+        const idx = parseInt(totalInput.value, 10) || 0;
+        const html = tmpl.innerHTML.replaceAll('__index__', idx);
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = html;
+        container.appendChild(wrapper.firstElementChild);
+        totalInput.value = idx + 1;
+      });
+    })();
+  </script>
+  </div>
+{% endblock %}
+
+
