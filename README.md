@@ -33,10 +33,6 @@ AI: External AI APIs (itinerary generation)
 
 Maps & Visualization: Map API + 360° Street View
 
-API Keys
-
-API keys are not included in this repository.
-Users must provide their own keys via environment variables or configuration files.
 
 Project Type
 
